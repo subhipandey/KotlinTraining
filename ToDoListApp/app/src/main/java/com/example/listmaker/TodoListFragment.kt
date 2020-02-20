@@ -1,19 +1,28 @@
 package com.example.listmaker
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.InputType
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class TodoListFragment : Fragment(), TodoListAdapter.TodoListClickListner {
 
-    private var listener: OnFragmentInteractionListener? = null
+
     private lateinit var todoListRecyclerView: RecyclerView
     private lateinit var listDataManager: ListDataManager
 
@@ -32,27 +41,28 @@ class TodoListFragment : Fragment(), TodoListAdapter.TodoListClickListner {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.let {
+            listDataManager = ViewModelProviders.of(this).get(ListDataManager::class.java)
+        }
         val list = listDataManager.readLists()
 
         todoListRecyclerView = view.findViewById(R.id.list_recyclerview)
         todoListRecyclerView.layoutManager = LinearLayoutManager(activity)
         todoListRecyclerView.adapter = TodoListAdapter(list,this)
 
-    }
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-            listDataManager = ListDataManager(context)
+        val fab = view.findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener { _ ->
+            showCreateTodoListDialog()
         }
+
+
+
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
+
+
+
+
 
 
     interface OnFragmentInteractionListener {
@@ -68,7 +78,9 @@ class TodoListFragment : Fragment(), TodoListAdapter.TodoListClickListner {
     }
 
     override fun listItemClicked(list: TaskList) {
-        listener?.onTodoListClicked(list)
+        showTaskListItems(list)
+
+
     }
 
     fun addList(list: TaskList) {
@@ -80,6 +92,41 @@ class TodoListFragment : Fragment(), TodoListAdapter.TodoListClickListner {
     fun saveList(list: TaskList) {
         listDataManager.saveList(list)
         updateLists()
+    }
+
+
+
+    private fun showCreateTodoListDialog() {
+        activity?.let {
+            val dialogTitle = getString(R.string.name_of_list)
+            var positiveButtonTitle = getString(R.string.create_list)
+            val myDialog = AlertDialog.Builder(it)
+            val todoListEditText = EditText(it)
+            todoTitleEditText.inputType = InputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_WORDS
+
+            myDialog.setTitle(dialogTitle)
+            myDialog.setView(todoTitleEditText)
+
+            myDialog.setPositiveButton(positiveButtonTitle){
+                    dialog, _  ->
+                val list = TaskList(todoListEditText.text.toString())
+                addList(list)
+                dialog.dismiss()
+                showTaskListItems(list)
+
+            }
+            myDialog.create().show()
+
+        }
+
+    }
+
+    private fun showTaskListItems(list: TaskList) {
+        view?.let{
+            val action = TodoListFragmentDirections.actionTodoListFragmentToTaskDetailFragment(list.name)
+            it.findNavController().navigate(action)
+        }
+
     }
     private fun updateLists(): {
         val lists = listDataManager.readLists()

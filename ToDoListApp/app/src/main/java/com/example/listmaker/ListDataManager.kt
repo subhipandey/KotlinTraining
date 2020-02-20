@@ -1,9 +1,12 @@
 package com.example.listmaker
 
-import android.content.Context
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.preference.PreferenceManager
 
-class ListDataManager(private val context: Context) {
+class ListDataManager(application: Application) : AndroidViewModel(application) {
+
+    private val context = application.applicationContext
 
 
     fun saveList(list: TaskList) {
