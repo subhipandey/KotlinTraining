@@ -1,4 +1,4 @@
-package com.subhipandey.materialapp
+package com.raywenderlich.colormovies
 
 import org.junit.Test
 
