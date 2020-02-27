@@ -7,9 +7,28 @@
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
   </style>
-
-  <style name = "ColorMovies.TextButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+  <style name="ColorMovies.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <item name="hintTextColor">@color/colorPrimaryDark</item>
+    <item name="boxStrokeColor">@color/colorPrimary</item>
 
   </style>
 
+  <style name="ColorMovies.Button" parent="Widget.MaterialComponents.Button">
+    <item name="android:backgroundTint">@color/colorPrimary</item>
+    <item name="android:textColor">@color/textButtonColor</item>
+  </style>
+
+  <style name = "ColorMovies.TextButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <item name="android:textColor">@color/colorPrimary</item>
+
+  </style>
+
+  <style name="ColorMovies.MovieSubtitle" parent="TextAppearance.MaterialComponents.Headline4">
+    <item name="android:textAlignment">center</item>
+  </style>
+
+  <style name="ColorMovies.AppTitle" parent="TextAppearance.MaterialComponents.Headline4">
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/textColor</item>
+  </style>
 </resources>

@@ -25,6 +25,7 @@
       app:srcCompat="@mipmap/ic_launcher_round" />
 
     <TextView
+      style="@style/ColorMovies.AppTitle"
       android:id="@+id/titleTextView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -34,11 +35,12 @@
       android:textSize="24sp"
       android:textStyle="bold" />
     <com.google.android.material.textfield.TextInputLayout
+      style="@style/ColorMovies.TextInputLayout"
       android:id="@+id/usernameTextInputLayout"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:hint="UserName">
-    </com.google.android.material.textfield.TextInputLayout>
+
 
     <EditText
       android:id="@+id/usernameEditText"
@@ -46,8 +48,10 @@
       android:layout_height="wrap_content"
       android:ems="10"
       android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+      style="@style/ColorMovies.TextInputLayout"
       android:id="@+id/passwordTextInputLayout"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -72,6 +76,7 @@
       android:textColor="@color/colorPrimary" />
 
     <com.google.android.material.button.MaterialButton
+      style="@style/ColorMovies.Button"
       android:id="@+id/signupButton"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"

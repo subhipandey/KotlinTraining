@@ -4,13 +4,16 @@
   <item
     android:id="@+id/grayscale"
     android:title="@string/grayscale"
+    android:icon="@drawable/ic_format"
       app:showAsAction="ifRoom"/>
   <item
     android:id="@+id/blur"
     android:title="@string/blur"
+    android:icon="@drawable/ic_blur"
       app:showAsAction="ifRoom"/>
   <item
     android:id="@+id/cropCircle"
     android:title="@string/crop_square"
+    android:icon="@drawable/ic_color"
       app:showAsAction="ifRoom"/>
 </menu>
