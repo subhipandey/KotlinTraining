@@ -1,0 +1,12 @@
+<resources>
+  <string name="app_name">ColorMovies</string>
+  <string name="blur">Blur</string>
+  <string name="sepia">Sepia</string>
+  <string name="grayscale">Grayscale</string>
+  <string name="crop_circle">Crop Circle</string>
+  <string name="detail_image">Detail Image</string>
+  <string name="movie_image">Movie Image</string>
+  <string name="icon">icon</string>
+  <string name="crop_square">Alpha</string>
+  <string name="rating">Rating: %1$d</string>
+</resources>

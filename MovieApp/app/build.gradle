@@ -1,0 +1,65 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+  compileSdkVersion 28
+  defaultConfig {
+    applicationId "com.raywenderlich.colormovies"
+    minSdkVersion 22
+    targetSdkVersion 28
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    buildConfigField 'String', 'TMDB_API_KEY', keystoreProperties['TMDB_API_KEY']
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+  }
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  implementation 'androidx.appcompat:appcompat:1.1.0'
+  implementation 'androidx.core:core-ktx:1.1.0'
+  implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+  testImplementation 'junit:junit:4.12'
+  androidTestImplementation 'androidx.test:runner:1.2.0'
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+  implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+  implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+
+  //Lifecycle
+  implementation "androidx.arch.core:core-common:$androidx_common"
+  implementation "androidx.lifecycle:lifecycle-common:$lifecycle_components"
+  implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_components"
+
+  //Anko
+  implementation "org.jetbrains.anko:anko:$anko_version"
+  implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+  implementation "androidx.cardview:cardview:$cardview_version"
+
+
+  def materialVersion = "1.2.0-alpha05"
+  implementation "com.google.android.material:material:$materialVersion"
+
+
+  //Picasso
+  def picassoVersion = "2.71828"
+  implementation "com.squareup.picasso:picasso:$picassoVersion"
+  implementation 'jp.wasabeef:picasso-transformations:2.2.1'
+
+
+}
