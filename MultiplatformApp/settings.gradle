@@ -1,0 +1,3 @@
+rootProject.name='GithubKMP'
+include ':app'
+include ':shared'
