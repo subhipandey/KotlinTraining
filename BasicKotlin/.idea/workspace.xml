@@ -2,22 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74a8dbdf-3f7a-4bf6-9e9e-2be4484b067a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MultiplatformApp/shared/src/androidMain/KotlinDispatcher.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MultiplatformApp/shared/src/androidMain/kotlin/ApplicationDispatcher.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MultiplatformApp/shared/src/commonMain/kotlin/api/Errors.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MultiplatformApp/shared/src/commonMain/kotlin/api/GitHubApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MultiplatformApp/shared/src/iosMain/kotlin/ApplicationDispatcher.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BooleanExamples.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Booleans.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TripleAndPairExample.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scope.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TripleAndPair.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/TripleAndPair.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/iosApp/GitHubKMP/GitHubKMP/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/iosApp/GitHubKMP/GitHubKMP/AppDelegate.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/iosApp/GitHubKMP/GitHubKMP/ViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/iosApp/GitHubKMP/GitHubKMP/ViewController.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/shared/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/shared/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/shared/src/commonMain/kotlin/common.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/shared/src/commonMain/kotlin/common.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
