@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74a8dbdf-3f7a-4bf6-9e9e-2be4484b067a" name="Default Changelist" comment="" />
+    <list default="true" id="74a8dbdf-3f7a-4bf6-9e9e-2be4484b067a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MultiplatformApp/shared/src/androidMain/KotlinDispatcher.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MultiplatformApp/shared/src/androidMain/kotlin/ApplicationDispatcher.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MultiplatformApp/shared/src/commonMain/kotlin/api/Errors.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MultiplatformApp/shared/src/commonMain/kotlin/api/GitHubApi.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MultiplatformApp/shared/src/iosMain/kotlin/ApplicationDispatcher.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TripleAndPair.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/TripleAndPair.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/iosApp/GitHubKMP/GitHubKMP/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/iosApp/GitHubKMP/GitHubKMP/AppDelegate.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/iosApp/GitHubKMP/GitHubKMP/ViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/iosApp/GitHubKMP/GitHubKMP/ViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/shared/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/shared/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MultiplatformApp/shared/src/commonMain/kotlin/common.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../MultiplatformApp/shared/src/commonMain/kotlin/common.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +31,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1YkXbY7rz5b9ci4LzDWOprLmjsN" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,6 +43,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RunManager">
@@ -74,9 +97,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1583490860593" />
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1583601902099">
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1583924780698">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1583601902099" />
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1583924780698" />
   </component>
 </project>
