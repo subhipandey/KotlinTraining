@@ -31,13 +31,19 @@ kotlin {
   sourceSets {
     commonMain.dependencies {
       api 'org.jetbrains.kotlin:kotlin-stdlib-common'
+      implementation "io.ktor:ktor-client-core:$ktor_version"
+      implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutines_version"
     }
 
     androidMain.dependencies {
       api 'org.jetbrains.kotlin:kotlin-stdlib'
+      implementation "io.ktor:ktor-client-android:$ktor_version"
+      implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version"
     }
 
     iosMain.dependencies {
+      implementation "io.ktor:ktor-client-ios:$ktor_version"
+      implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$kotlinx_coroutines_version"
     }
   }
 }
