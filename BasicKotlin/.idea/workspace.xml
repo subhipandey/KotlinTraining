@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74a8dbdf-3f7a-4bf6-9e9e-2be4484b067a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/BooleanExamples.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Booleans.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TripleAndPairExample.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scope.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ForLoops.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ForLoopsExample.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/When.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WhileLoops.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WhileLoopsExample.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/whenexample.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,6 +18,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Class" />
         <option value="Kotlin File" />
       </list>
     </option>
@@ -86,9 +89,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1583490860593" />
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1583924780698">
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1584075722694">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1583924780698" />
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1584075722694" />
   </component>
 </project>
