@@ -35,10 +35,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 import com.subhipandey.android.octomembers.R
 import com.subhipandey.android.octomembers.model.Member
 import com.subhipandey.android.octomembers.ui.member.MemberActivity
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_team_member.view.*
 
 class TeamMemberAdapter(var members: List<Member>) : RecyclerView.Adapter<TeamMemberAdapter.TeamMemberViewHolder>() {

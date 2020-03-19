@@ -28,27 +28,12 @@
  * THE SOFTWARE.
  */
 
-package com.subhipandey.android.octomembers.ui.teammembers
+package com.subhipandey.android.octomembers.repository
 
 import com.subhipandey.android.octomembers.model.Member
+import retrofit2.Callback
 
-
-interface TeamMembersContract {
-
-  interface View {
-    fun showMembers(members: List<Member>)
-    fun showErrorRetrievingMembers()
-    fun clearMembers()
-    fun showLoading()
-    fun hideLoading()
-    fun disableInput()
-    fun enableInput()
-    fun showEmptyState()
-    fun hideEmptyState()
-    fun hideMembers()
-  }
-
-  interface Presenter {
-    fun retrieveAllMembers(teamName: String)
-  }
+interface Repository {
+  fun retrieveTeamMembers(teamName: String, callback: Callback<List<Member>>)
+  fun retrieveMember(login: String, callback: Callback<Member>)
 }

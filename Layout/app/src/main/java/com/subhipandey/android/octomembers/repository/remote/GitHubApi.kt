@@ -28,27 +28,18 @@
  * THE SOFTWARE.
  */
 
-package com.subhipandey.android.octomembers.ui.teammembers
+package com.subhipandey.android.octomembers.repository.remote
 
 import com.subhipandey.android.octomembers.model.Member
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Path
 
 
-interface TeamMembersContract {
+interface GitHubApi {
+  @GET("orgs/{org}/members")
+  fun retrieveTeamMembers(@Path("org") teamName: String): Call<List<Member>>
 
-  interface View {
-    fun showMembers(members: List<Member>)
-    fun showErrorRetrievingMembers()
-    fun clearMembers()
-    fun showLoading()
-    fun hideLoading()
-    fun disableInput()
-    fun enableInput()
-    fun showEmptyState()
-    fun hideEmptyState()
-    fun hideMembers()
-  }
-
-  interface Presenter {
-    fun retrieveAllMembers(teamName: String)
-  }
+  @GET("users/{login}")
+  fun retrieveMember(@Path("login") login: String): Call<Member>
 }

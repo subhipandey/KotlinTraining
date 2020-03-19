@@ -97,6 +97,7 @@ class TeamMembersActivity : AppCompatActivity(), TeamMembersContract.View {
   }
 
   override fun showMembers(members: List<Member>) {
+    teamMembersList.hideKeyboard()
     adapter.members = members
     adapter.notifyDataSetChanged()
     teamMembersList.visibility = View.VISIBLE
@@ -113,14 +114,16 @@ class TeamMembersActivity : AppCompatActivity(), TeamMembersContract.View {
 
   override fun showLoading() {
     loadingIndicator.visibility = View.VISIBLE
+
   }
 
   override fun hideLoading() {
     loadingIndicator.visibility = View.GONE
+
   }
 
   override fun disableInput() {
-    showMembers.isEnabled = false
+   showMembers.isEnabled = false
   }
 
   override fun enableInput() {

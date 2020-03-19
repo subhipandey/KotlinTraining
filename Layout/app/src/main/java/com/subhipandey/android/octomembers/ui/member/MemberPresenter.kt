@@ -28,27 +28,35 @@
  * THE SOFTWARE.
  */
 
-package com.subhipandey.android.octomembers.ui.teammembers
+package com.subhipandey.android.octomembers.ui.member
 
 import com.subhipandey.android.octomembers.model.Member
+import com.subhipandey.android.octomembers.repository.Repository
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
-interface TeamMembersContract {
+class MemberPresenter(val repository: Repository, val view: MemberContract.View)  : MemberContract.Presenter {
 
-  interface View {
-    fun showMembers(members: List<Member>)
-    fun showErrorRetrievingMembers()
-    fun clearMembers()
-    fun showLoading()
-    fun hideLoading()
-    fun disableInput()
-    fun enableInput()
-    fun showEmptyState()
-    fun hideEmptyState()
-    fun hideMembers()
+  override fun retrieveMember(login: String) {
+    repository.retrieveMember(login, object : Callback<Member> {
+      override fun onResponse(call: Call<Member>?, response: Response<Member>?) {
+        val member = response?.body()
+        if (member != null) {
+          view.showMember(member)
+        } else {
+          showErrorRetrievingMember()
+        }
+      }
+
+      override fun onFailure(call: Call<Member>?, t: Throwable?) {
+        showErrorRetrievingMember()
+      }
+    })
   }
 
-  interface Presenter {
-    fun retrieveAllMembers(teamName: String)
+  private fun showErrorRetrievingMember() {
+    view.showErrorRetrievingMember()
   }
 }

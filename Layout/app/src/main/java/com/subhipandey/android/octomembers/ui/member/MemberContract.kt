@@ -28,27 +28,18 @@
  * THE SOFTWARE.
  */
 
-package com.subhipandey.android.octomembers.ui.teammembers
+package com.subhipandey.android.octomembers.ui.member
 
 import com.subhipandey.android.octomembers.model.Member
 
 
-interface TeamMembersContract {
-
+interface MemberContract {
   interface View {
-    fun showMembers(members: List<Member>)
-    fun showErrorRetrievingMembers()
-    fun clearMembers()
-    fun showLoading()
-    fun hideLoading()
-    fun disableInput()
-    fun enableInput()
-    fun showEmptyState()
-    fun hideEmptyState()
-    fun hideMembers()
+    fun showMember(member: Member)
+    fun showErrorRetrievingMember()
   }
 
   interface Presenter {
-    fun retrieveAllMembers(teamName: String)
+    fun retrieveMember(login: String)
   }
 }

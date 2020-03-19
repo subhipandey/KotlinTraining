@@ -28,27 +28,33 @@
  * THE SOFTWARE.
  */
 
-package com.subhipandey.android.octomembers.ui.teammembers
+package com.subhipandey.android.octomembers.repository.remote
 
 import com.subhipandey.android.octomembers.model.Member
+import com.subhipandey.android.octomembers.repository.Repository
+import retrofit2.Callback
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.Retrofit
 
 
-interface TeamMembersContract {
+class RemoteRepository : Repository {
 
-  interface View {
-    fun showMembers(members: List<Member>)
-    fun showErrorRetrievingMembers()
-    fun clearMembers()
-    fun showLoading()
-    fun hideLoading()
-    fun disableInput()
-    fun enableInput()
-    fun showEmptyState()
-    fun hideEmptyState()
-    fun hideMembers()
+  val api: GitHubApi
+
+  init {
+    val retrofit = Retrofit.Builder()
+      .baseUrl("https://api.github.com")
+      .addConverterFactory(GsonConverterFactory.create())
+      .build()
+
+    api = retrofit.create<GitHubApi>(GitHubApi::class.java)
   }
 
-  interface Presenter {
-    fun retrieveAllMembers(teamName: String)
+  override fun retrieveTeamMembers(teamName: String, callback: Callback<List<Member>>) {
+    api.retrieveTeamMembers(teamName).enqueue(callback)
+  }
+
+  override fun retrieveMember(login: String, callback: Callback<Member>) {
+    api.retrieveMember(login).enqueue(callback)
   }
 }

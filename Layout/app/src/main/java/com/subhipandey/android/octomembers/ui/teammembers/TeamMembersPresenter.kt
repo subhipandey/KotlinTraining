@@ -31,24 +31,69 @@
 package com.subhipandey.android.octomembers.ui.teammembers
 
 import com.subhipandey.android.octomembers.model.Member
+import com.subhipandey.android.octomembers.repository.Repository
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
-interface TeamMembersContract {
+class TeamMembersPresenter(val repository: Repository, val view: TeamMembersContract.View) : TeamMembersContract.Presenter {
 
-  interface View {
-    fun showMembers(members: List<Member>)
-    fun showErrorRetrievingMembers()
-    fun clearMembers()
-    fun showLoading()
-    fun hideLoading()
-    fun disableInput()
-    fun enableInput()
-    fun showEmptyState()
-    fun hideEmptyState()
-    fun hideMembers()
+  override fun retrieveAllMembers(teamName: String) {
+    showViewLoadingState()
+    repository.retrieveTeamMembers(teamName, object : Callback<List<Member>> {
+      override fun onResponse(call: Call<List<Member>>?, response: Response<List<Member>>?) {
+        val members = response?.body()
+        if (members != null) {
+          showMembersAndEnableInput(members)
+        } else {
+          clearViewMembersAndShowError()
+          enableInput()
+        }
+      }
+
+      override fun onFailure(call: Call<List<Member>>?, t: Throwable?) {
+        clearViewMembersAndShowError()
+        enableInput()
+      }
+    })
   }
 
-  interface Presenter {
-    fun retrieveAllMembers(teamName: String)
+  private fun showViewLoadingState() {
+    view.hideMembers()
+    view.hideEmptyState()
+
+  }
+
+  private fun showMemberInView(members: List<Member>) {
+    view.showMembers(members)
+    view.hideLoading()
+
+  }
+
+  private fun clearViewMembersAndShowError() {
+    view.clearMembers()
+    view.showErrorRetrievingMembers()
+
+    view.hideLoading()
+
+  }
+  private fun enableInput() {
+    view.enableInput()
+  }
+
+  private fun showEmptyState() {
+    view.showEmptyState()
+    view.hideMembers()
+    view.hideLoading()
+  }
+
+  private fun showMembersAndEnableInput(members: List<Member>) {
+    if (members.isNotEmpty()) {
+      showMemberInView(members)
+    } else {
+      showEmptyState()
+    }
+    enableInput()
   }
 }

@@ -1,100 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  tools:context="com.subhipandey.android.octomembers.ui.member.MemberActivity"
-  android:gravity="center_horizontal"
-  android:orientation="vertical">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.subhipandey.android.octomembers.ui.member.MemberActivity">
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="@dimen/detail_avatar_container_size"
-      android:background="@color/colorAccent"
-      android:gravity="center_vertical"
-      android:orientation="horizontal">
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@id/horizontalGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/horizontalGuideline"
+        app:layout_constraintVertical_bias="0.0" />
+
     <ImageView
-    android:layout_width="@dimen/detail_avatar_size"
-    android:layout_height="@dimen/detail_avatar_size"
-    android:id="@+id/memberAvatar"
-    android:contentDescription="@string/contentDescription_teamMemberAvatar"
+        android:id="@+id/memberAvatar"
+        android:layout_width="@dimen/detail_avatar_size"
+        android:layout_height="@dimen/detail_avatar_size"
+        android:contentDescription="@string/contentDescription_teamMemberAvatar"
+        android:padding="@dimen/padding_double"
+        tools:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toTopOf="@id/horizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@id/verticalGuideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
+    <TextView
+        android:id="@+id/memberName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:maxLines="3"
         android:padding="@dimen/padding_standard"
-    tools:src="@drawable/ic_launcher_background">
-
-      <TextView
-          style="@style/member_info"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:gravity="center"
-          android:padding="@dimen/padding_standard"
-          android:maxLines="3"
-          android:textSize="@dimen/detail_name_text"
-          tools:text="FirstName LastName"
-          />
-
-  </ImageView>
-
-  </LinearLayout>
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1"
-      android:gravity="center"
-      android:background="@color/colorPrimary"
-      android:orientation="vertical">
+        android:textSize="@dimen/detail_name_text"
+        tools:layout_editor_absoluteX="200dp"
+        tools:text="FirstName LastName"
+        app:layout_constraintBottom_toTopOf="@id/horizontalGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/verticalGuideline"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
 
-
-
-
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
     <TextView
+        android:id="@+id/labelLogin"
         style="@style/member_label"
-        android:text="@string/label_login"/>
-    <TextView
-        style="@style/member_info"
-        android:id="@+id/memberLogin"/>
-  </LinearLayout>
+        android:text="@string/label_login"
+        app:layout_constraintBottom_toTopOf="@+id/labelCompany"
+        app:layout_constraintEnd_toStartOf="@+id/infoVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/horizontalGuideline"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:visibility="visible"
+        />
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
     <TextView
+        android:id="@+id/labelCompany"
         style="@style/member_label"
-        android:text="@string/label_company"/>
-    <TextView
-        style="@style/member_info"
-        android:id="@+id/memberCompany"/>
-  </LinearLayout>
+        android:text="@string/label_company"
+        app:layout_constraintBottom_toTopOf="@+id/labelEmail"
+        app:layout_constraintEnd_toStartOf="@+id/infoVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/labelLogin"
+        tools:visibility="visible"
+        />
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+
     <TextView
+        android:id="@+id/labelEmail"
         style="@style/member_label"
-        android:text="@string/label_email"/>
-    <TextView
-        style="@style/member_info"
-        android:id="@+id/memberEmail"/>
-  </LinearLayout>
+        android:text="@string/label_email"
+        app:layout_constraintBottom_toTopOf="@+id/labelType"
+        app:layout_constraintEnd_toStartOf="@+id/infoVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/labelCompany"
+        tools:visibility="visible"
+        />
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
     <TextView
+        android:id="@+id/labelType"
         style="@style/member_label"
-        android:text="@string/label_type"/>
-  <TextView
+        android:text="@string/label_type"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/infoVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@id/labelEmail"
+        tools:visibility="visible"
+        />
+
+    <TextView
+        android:id="@+id/memberLogin"
         style="@style/member_info"
-        android:id="@+id/memberType"/>
-  </LinearLayout>
+        app:layout_constraintBottom_toTopOf="@+id/memberCompany"
+        app:layout_constraintStart_toStartOf="@+id/infoVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalGuideline"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:visibility="visible"
+        />
 
-  </LinearLayout>
+    <TextView
+        android:id="@+id/memberCompany"
+        style="@style/member_info"
+        app:layout_constraintBottom_toTopOf="@+id/memberEmail"
+        app:layout_constraintStart_toStartOf="@+id/infoVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/memberLogin"
+        tools:visibility="visible"
+        />
 
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/memberEmail"
+        style="@style/member_info"
+        app:layout_constraintBottom_toTopOf="@+id/memberType"
+        app:layout_constraintStart_toStartOf="@+id/infoVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/memberCompany"
+        tools:visibility="visible"
+        />
+
+
+    <TextView
+        android:id="@+id/memberType"
+        style="@style/member_info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/infoVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/memberEmail"
+        tools:visibility="visible"
+        />
+
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/infoVerticalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

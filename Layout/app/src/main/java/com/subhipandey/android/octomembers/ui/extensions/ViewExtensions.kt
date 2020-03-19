@@ -28,27 +28,14 @@
  * THE SOFTWARE.
  */
 
-package com.subhipandey.android.octomembers.ui.teammembers
+package com.subhipandey.android.octomembers.ui.extensions
 
-import com.subhipandey.android.octomembers.model.Member
+import android.content.Context
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 
 
-interface TeamMembersContract {
-
-  interface View {
-    fun showMembers(members: List<Member>)
-    fun showErrorRetrievingMembers()
-    fun clearMembers()
-    fun showLoading()
-    fun hideLoading()
-    fun disableInput()
-    fun enableInput()
-    fun showEmptyState()
-    fun hideEmptyState()
-    fun hideMembers()
-  }
-
-  interface Presenter {
-    fun retrieveAllMembers(teamName: String)
-  }
+fun View.hideKeyboard() {
+  val imm = this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+  imm.hideSoftInputFromWindow(windowToken, 0)
 }
