@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74a8dbdf-3f7a-4bf6-9e9e-2be4484b067a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Collections.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Generics.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GenericsExample.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LamdasExample.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LamdasSyntax.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Classes.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ClassesExample.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataClass.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataClassExample.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Inheritance.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Initializers.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lambdas.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lambdas.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +41,7 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RunManager">
-    <configuration name="MainKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
@@ -97,14 +98,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1583490860593" />
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1584958627385">
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1585043567974">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1584958627385" />
-    <state x="680" y="166" key="run.anything.popup" timestamp="1584435476654">
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1585043567974" />
+    <state x="680" y="166" key="run.anything.popup" timestamp="1585040788497">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="680" y="166" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1584435476654" />
+    <state x="680" y="166" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1585040788497" />
     <state x="687" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1584953912729">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
