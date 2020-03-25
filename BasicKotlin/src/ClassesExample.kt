@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
     Add a method `movieListFor(genre) : MovieList?`
     that will return the Nullable `MovieList` for the provided genre.
     Add a method 'addMovie'(genre, movie) that will add a movie to the given genre
- - Create `jane` and `john` users in main and have them create and share lists.
+ - Create `jane` and `john` users in utils.main and have them create and share lists.
     Have both `jane` and `john` modify the same list and call `print` from both users.
     Are all the changes reflected?
 */

@@ -2,14 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74a8dbdf-3f7a-4bf6-9e9e-2be4484b067a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Classes.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ClassesExample.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataClass.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataClassExample.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Inheritance.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Initializers.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Companion.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Deligations.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Extensions.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GetterAndSetters.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Interface.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/InterfaceExample.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SealedClasses.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SingletonExample.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Singletons.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Visibility.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enumExample.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enums.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lateInit.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lateInitExample.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/this.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/Strings.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClassesExample.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClassesExample.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +49,11 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\projects\KotlinTraining\BasicKotlin\src\utils" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
@@ -74,10 +89,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="816" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1584955943458">
+    <state x="816" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1585123120959">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="816" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1584955943458" />
+    <state x="816" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1585123120959" />
     <state x="704" y="100" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1584957939159">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -98,10 +113,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1583490860593" />
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1585043567974">
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1585120559622">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1585043567974" />
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1585120559622" />
     <state x="680" y="166" key="run.anything.popup" timestamp="1585040788497">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
