@@ -2,6 +2,7 @@ package com.subhipandey.android.creatures.ui
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -28,13 +29,16 @@ class FavoritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         favoritesRecyclerView.layoutManager = LinearLayoutManager(activity)
         favoritesRecyclerView.adapter = adapter
+
+        val heightInPixels = resources.getDimensionPixelSize(R.dimen.list_item_creature_height)
+        favoritesRecyclerView.addItemDecoration(DividerItemDecoration(ContextCompat.getColor(context!!, R.color.black), heightInPixels))
     }
 
     override fun onResume() {
         super.onResume()
-      val favorites = CreatureStore.getFavoriteCreatures(context!!)
-        favorites?.let {
-            adapter.updateCreatures(favorites)
+      val composites = CreatureStore.getFavoriteComposites(context!!)
+        composites?.let {
+            adapter.updateCreatures(composites)
         }
     }
 

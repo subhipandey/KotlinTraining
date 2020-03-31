@@ -20,7 +20,7 @@
         android:id="@+id/creatureCardContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/creatureImage"
@@ -35,10 +35,10 @@
             android:id="@+id/nameHolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center"
             android:alpha="0.9"
             android:background="@color/colorAccent"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/fullName"
@@ -50,6 +50,18 @@
                 android:padding="@dimen/padding_half"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/creature_card_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/slogan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/padding_half"
+                android:text="@string/jupiter_slogan"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/creature_card_slogan_size"
                 android:textStyle="bold" />
 
         </LinearLayout>
