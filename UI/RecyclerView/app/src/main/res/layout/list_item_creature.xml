@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listItemContainer"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/list_item_with_divider_height"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="@dimen/list_item_with_divider_height">
 
     <ImageView
         android:id="@+id/creatureImage"
@@ -12,8 +13,8 @@
         android:layout_marginStart="@dimen/padding_standard"
         android:contentDescription="@string/content_description_creature_image"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/creature_cat_derp" />
 
     <TextView
@@ -29,16 +30,31 @@
         app:layout_constraintStart_toEndOf="@id/creatureImage"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:text="Full Name"/>
+        tools:text="Full Name" />
 
     <TextView
         android:id="@+id/nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_half"
         android:layout_marginStart="@dimen/padding_standard"
+        android:layout_marginBottom="@dimen/padding_half"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/creatureImage"
         app:layout_constraintTop_toBottomOf="@+id/fullName"
         tools:text="Nickname" />
+
+    <ImageView
+        android:id="@+id/handle"
+        android:layout_width="@dimen/drag_handle_size"
+        android:layout_height="@dimen/drag_handle_size"
+        android:layout_marginEnd="@dimen/padding_standard"
+        android:contentDescription="@string/content_description_drag_handle"
+        android:scaleType="center"
+        android:src="@drawable/ic_reorder_24px"
+        android:tint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </android.support.constraint.ConstraintLayout>

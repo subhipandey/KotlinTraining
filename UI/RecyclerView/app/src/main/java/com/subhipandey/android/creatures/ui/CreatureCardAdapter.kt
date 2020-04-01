@@ -21,8 +21,10 @@ import kotlinx.android.synthetic.main.list_item_creature_card.view.*
 import kotlinx.android.synthetic.main.list_item_creature_card.view.creatureCard
 import kotlinx.android.synthetic.main.list_item_creature_card.view.nameHolder
 import kotlinx.android.synthetic.main.list_item_creature_card_jupiter.view.*
+import java.util.*
 
-class CreatureCardAdapter(private val creatures: MutableList<Creature>) : RecyclerView.Adapter<CreatureCardAdapter.ViewHolder>() {
+class CreatureCardAdapter(private val creatures: MutableList<Creature>)
+    : RecyclerView.Adapter<CreatureCardAdapter.ViewHolder>(), ItemTouchHelperListener {
 
     var scrollDirection = ScrollDirection.DOWN
     var jupiterSpanSize = 2
@@ -30,8 +32,8 @@ class CreatureCardAdapter(private val creatures: MutableList<Creature>) : Recycl
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
             ViewType.OTHER.ordinal -> ViewHolder(parent.inflate(R.layout.list_item_creature_card))
-            ViewType.JUPITER.ordinal -> ViewHolder(parent.inflate(R.layout.list_item_creature_card_jupiter))
             ViewType.MARS.ordinal -> ViewHolder(parent.inflate(R.layout.list_item_creature_card_mars))
+            ViewType.JUPITER.ordinal -> ViewHolder(parent.inflate(R.layout.list_item_creature_card_jupiter))
             else -> throw IllegalArgumentException("Illegal value for viewType")
         }
     }
@@ -43,12 +45,11 @@ class CreatureCardAdapter(private val creatures: MutableList<Creature>) : Recycl
     override fun getItemCount() = creatures.size
 
     override fun getItemViewType(position: Int) =
-            when (creatures[position].planet){
+            when (creatures[position].planet) {
                 Constants.JUPITER -> ViewType.JUPITER.ordinal
                 Constants.MARS -> ViewType.MARS.ordinal
                 else -> ViewType.OTHER.ordinal
-
-    }
+            }
 
     fun spanSizeAtPosition(position: Int): Int {
         return if (creatures[position].planet == Constants.JUPITER) {
@@ -56,6 +57,20 @@ class CreatureCardAdapter(private val creatures: MutableList<Creature>) : Recycl
         } else {
             1
         }
+    }
+
+    override fun onItemMove(recyclerView: RecyclerView, fromPosition: Int, toPosition: Int): Boolean {
+        if (fromPosition < toPosition) {
+            for (i in fromPosition until toPosition) {
+                Collections.swap(creatures, i, i + 1)
+            }
+        } else {
+            for (i in fromPosition downTo toPosition + 1) {
+                Collections.swap(creatures, i, i - 1)
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition)
+        return true
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
@@ -114,12 +129,6 @@ class CreatureCardAdapter(private val creatures: MutableList<Creature>) : Recycl
     }
 
     enum class ViewType {
-        JUPITER,MARS,OTHER
+        JUPITER, MARS, OTHER
     }
-
-
-
-
-
-
 }

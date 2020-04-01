@@ -12,5 +12,6 @@
     <string name="menu_span_2">Span 2</string>
     <string name="jupiter_slogan">JUPITER RULES!!</string>
     <string name = "mars_slogan">I LOVE MARS</string>
+    <string name="content_description_drag_handle">Drag Handle</string>
 
 </resources>
