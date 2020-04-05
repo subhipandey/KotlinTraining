@@ -1,5 +1,7 @@
 package com.subhipandey.android.datadrop.ui.droplist
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,13 +10,15 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.View
 import com.subhipandey.android.datadrop.R
-import com.subhipandey.android.datadrop.app.Injection
 import com.subhipandey.android.datadrop.model.Drop
+
+import com.subhipandey.android.datadrop.viewmodel.DropsViewModel
 import kotlinx.android.synthetic.main.activity_list.*
 
-class DropListActivity : AppCompatActivity(), DropListContract.View, DropListAdapter.DropListAdapterListener {
+class DropListActivity : AppCompatActivity(), DropListAdapter.DropListAdapterListener {
 
-  override lateinit var presenter: DropListContract.Presenter
+  private lateinit var dropsViewModel: DropsViewModel
+
   private val adapter = DropListAdapter(mutableListOf(), this)
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,22 +33,17 @@ class DropListActivity : AppCompatActivity(), DropListContract.View, DropListAda
     val itemTouchHelper = ItemTouchHelper(ItemTouchHelperCallback(adapter))
     itemTouchHelper.attachToRecyclerView(listRecyclerView)
 
-    presenter = Injection.provideDropListPresenter(this)
-    presenter.start()
+    dropsViewModel = ViewModelProviders.of(this).get(DropsViewModel::class.java)
+
+    dropsViewModel.getDrops().observe(this, Observer<List<Drop>> { drops ->
+      adapter.updateDrops(drops ?: emptyList())
+      checkForEmptyState()
+    })
   }
 
-  override fun showDrops(drops: List<Drop>) {
-    adapter.updateDrops(drops)
-    checkForEmptyState()
-  }
+  override fun deleteDropAtPosition(drop: Drop) {
+    dropsViewModel.clearDrop(drop)
 
-  override fun removeDropAtPosition(position: Int) {
-    adapter.removeDropAtPosition(position)
-    checkForEmptyState()
-  }
-
-  override fun deleteDropAtPosition(drop: Drop, position: Int) {
-    presenter.deleteDropAtPosition(drop, position)
   }
 
   private fun checkForEmptyState() {
