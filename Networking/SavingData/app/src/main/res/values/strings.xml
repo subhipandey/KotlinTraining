@@ -5,7 +5,7 @@
   <string name="drop">Drop</string>
   <string name="cancel">Cancel</string>
   <string name="list_drops">List drops</string>
-  <string name="marker_color">Marker color</string>
+  <string name="marker_color"> DefaultMarker color</string>
   <string name="clear_all_drops">Clear all drops</string>
   <string name="clear_all_drops_title">Clear All Drops?</string>
   <string name="all_drops">All Drops</string>

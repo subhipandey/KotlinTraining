@@ -1,32 +1,4 @@
-/*
- * Copyright (c) 2018 Razeware LLC
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
- * distribute, sublicense, create a derivative work, and/or sell copies of the
- * Software in any work that is designed, intended, or marketed for pedagogical or
- * instructional purposes related to programming, coding, application development,
- * or information technology.  Permission for such use, copying, modification,
- * merger, publication, distribution, sublicensing, creation of derivative works,
- * or sale is expressly withheld.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+
 
 package com.subhipandey.android.datadrop.ui.map
 
@@ -67,7 +39,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, MapContract.View {
     setContentView(R.layout.activity_map)
     // Obtain the SupportMapFragment and get notified when the map is ready to be used.
     val mapFragment = supportFragmentManager
-        .findFragmentById(R.id.map) as SupportMapFragment
+            .findFragmentById(R.id.map) as SupportMapFragment
     mapFragment.getMapAsync(this)
   }
 
@@ -114,21 +86,21 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, MapContract.View {
   }
 
   override fun showDrop(drop: Drop) {
-    placeMarkerOnMap(drop.latLng, drop.dropMessage)
+    placeMarkerOnMap(drop.latLng, drop.dropMessage, drop.markerColor)
   }
 
   override fun showDrops(drops: List<Drop>) {
     map.clear()
     drops.forEach { drop ->
-      placeMarkerOnMap(drop.latLng, drop.dropMessage)
+      placeMarkerOnMap(drop.latLng, drop.dropMessage, drop.markerColor)
     }
   }
 
-  private fun placeMarkerOnMap(location: LatLng, title: String) {
+  private fun placeMarkerOnMap(location: LatLng, title: String, color: Int = 0) {
     val markerOptions = MarkerOptions().position(location)
     markerOptions.title(title)
 
-    val markerColor = MarkerColor.createMarkerColor(presenter.getMarkerColor())
+    val markerColor = MarkerColor.createMarkerColor(color)
     markerOptions.icon(markerColor.getMarkerBitmapDescriptor())
 
     map.addMarker(markerOptions)
@@ -139,11 +111,36 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, MapContract.View {
     val dialogView = this.layoutInflater.inflate(R.layout.dialog_drop, null)
     dialogBuilder.setView(dialogView)
 
+    val rg = dialogView.findViewById(R.id.radio_group) as RadioGroup
+
+    var color = 0
+
+    for ((index, markerColor) in MarkerColor.values().withIndex()) {
+      val rb = RadioButton(this)
+      rb.text = markerColor.displayString
+      rb.setPadding(36, 36, 36, 36)
+      rg.addView(rb)
+      if (presenter.getMarkerColor() == markerColor.displayString) {
+        rg.check(rb.id)
+        color = index
+      }
+    }
+
+    rg.setOnCheckedChangeListener { group, checkedId ->
+      val childCount = group.childCount
+      for (index in 0 until childCount) {
+        val button = group.getChildAt(index)
+        if (button.id == checkedId) {
+          color = index
+        }
+      }
+    }
+
     val messageEditText = dialogView.findViewById(R.id.messageEditText) as EditText
 
     dialogBuilder.setTitle(getString(R.string.make_a_drop))
     dialogBuilder.setPositiveButton(getString(R.string.drop), { _, _ ->
-      addDrop(latLng, messageEditText.text.toString())
+      addDrop(latLng, messageEditText.text.toString(), color)
     })
     dialogBuilder.setNegativeButton(getString(R.string.cancel), { _, _ ->
       //pass
@@ -170,10 +167,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, MapContract.View {
 
   private fun showClearAllDialog() {
     AlertDialog.Builder(this)
-        .setTitle(getString(R.string.clear_all_drops_title))
-        .setIcon(android.R.drawable.ic_dialog_alert)
-        .setPositiveButton(android.R.string.yes) { _, _ -> clearAllDrops() }
-        .setNegativeButton(android.R.string.no, null).show()
+            .setTitle(getString(R.string.clear_all_drops_title))
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setPositiveButton(android.R.string.yes) { _, _ -> clearAllDrops() }
+            .setNegativeButton(android.R.string.no, null).show()
   }
 
   private fun showDropList() {
@@ -200,9 +197,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, MapContract.View {
     rg.setOnCheckedChangeListener { group, checkedId ->
       val childCount = group.childCount
       (0 until childCount)
-          .map { group.getChildAt(it) as RadioButton }
-          .filter { it.id == checkedId }
-          .forEach { presenter.saveMarkerColor(it.text.toString()) }
+              .map { group.getChildAt(it) as RadioButton }
+              .filter { it.id == checkedId }
+              .forEach { presenter.saveMarkerColor(it.text.toString()) }
     }
 
     dialog.show()
@@ -225,19 +222,19 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, MapContract.View {
     rg.setOnCheckedChangeListener { group, checkedId ->
       val childCount = group.childCount
       (0 until childCount)
-          .map { group.getChildAt(it) as RadioButton }
-          .filter { it.id == checkedId }
-          .forEach {
-            presenter.saveMapType(it.text.toString())
-            map.mapType = MapType.createMapType(presenter.getMapType()).getGoogleMapType()
-          }
+              .map { group.getChildAt(it) as RadioButton }
+              .filter { it.id == checkedId }
+              .forEach {
+                presenter.saveMapType(it.text.toString())
+                map.mapType = MapType.createMapType(presenter.getMapType()).getGoogleMapType()
+              }
     }
 
     dialog.show()
   }
 
-  private fun addDrop(latLng: LatLng, message: String) {
-    presenter.addDrop(Drop(latLng, message))
+  private fun addDrop(latLng: LatLng, message: String, markerColor: Int) {
+    presenter.addDrop(Drop(latLng, message, markerColor = markerColor))
   }
 
   private fun clearAllDrops() {
