@@ -1,5 +1,4 @@
 
-
 package com.subhipandey.android.photosapp.ui.photos
 
 import android.arch.lifecycle.LiveData
@@ -15,6 +14,14 @@ class PhotosViewModel(private val repository: Repository) : ViewModel() {
 
   fun getBanner(): LiveData<String> {
     return repository.getBanner()
+  }
+
+  fun onStart() {
+    repository.register()
+  }
+
+  fun onStop() {
+    repository.unregister()
   }
 }
 

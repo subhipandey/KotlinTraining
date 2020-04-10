@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">RWDC2018</string>
+  <string name="app_name">photosapp</string>
   <string name="title_photos">Photos</string>
   <string name="title_song">Song</string>
   <string name="event_photo">Event photo</string>
@@ -7,4 +7,6 @@
   <string name="download">Download</string>
   <string name="play">Play</string>
   <string name="stop">Stop</string>
+  <string name="challenge">Your Challenge PhotosApp!!</string>
+  <string name="media_playback">Media Playback</string>
 </resources>

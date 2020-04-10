@@ -1,4 +1,4 @@
-package service
+package com.subhipandey.android.photosapp.service
 
 import android.app.job.JobParameters
 import android.app.job.JobService

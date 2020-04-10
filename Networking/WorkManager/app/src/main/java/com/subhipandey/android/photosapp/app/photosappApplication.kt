@@ -6,10 +6,13 @@ import android.app.Application
 import android.content.Context
 
 
-class photosApplication : Application() {
+class photosappApplication : Application() {
+
 
   companion object {
-    private lateinit var instance: photosApplication
+    private lateinit var instance: photosappApplication
+
+    var isPlayingSong = false
 
     fun getAppContext(): Context = instance.applicationContext
   }

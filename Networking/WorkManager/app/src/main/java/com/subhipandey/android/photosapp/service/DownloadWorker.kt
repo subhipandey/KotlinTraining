@@ -1,11 +1,10 @@
 
 
-package service
+package com.subhipandey.android.photosapp.service
 
 import android.util.Log
 import androidx.work.Worker
 import com.subhipandey.android.photosapp.app.PhotosUtils
-
 
 
 class DownloadWorker : Worker() {

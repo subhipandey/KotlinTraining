@@ -13,6 +13,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.subhipandey.android.photosapp.R
 import com.subhipandey.android.photosapp.app.Injection
+import com.subhipandey.android.photosapp.app.photosappApplication
+import com.subhipandey.android.photosapp.service.FetchIntentService
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_photos.*
 
@@ -24,6 +26,17 @@ class PhotosFragment : Fragment() {
     fun newInstance(): PhotosFragment {
       return PhotosFragment()
     }
+  }
+
+  override fun onStart() {
+    super.onStart()
+    viewModel.onStart()
+    FetchIntentService.startActionFetch(photosappApplication.getAppContext())
+  }
+
+  override fun onStop() {
+    super.onStop()
+    viewModel.onStop()
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
