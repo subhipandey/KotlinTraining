@@ -7,12 +7,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.subhipandey.android.w00tze.R
+import com.subhipandey.android.w00tze.model.ApiError
+import com.subhipandey.android.w00tze.model.Either
 import com.subhipandey.android.w00tze.model.Repo
+import com.subhipandey.android.w00tze.model.Status
 import com.subhipandey.android.w00tze.viewmodel.ReposViewModel
 import kotlinx.android.synthetic.main.fragment_repos.*
 
@@ -34,11 +38,15 @@ class ReposFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    reposRecyclerView.layoutManager = LinearLayoutManager(context)
-    reposRecyclerView.adapter = adapter
 
-    reposViewModel.getRepos().observe(this, Observer<List<Repo>> { repos ->
-      adapter.updateRepos(repos ?: emptyList())
+    reposViewModel.getRepos().observe(this, Observer<Either<List<Repo>>> { either ->
+      if (either?.status == Status.SUCCESS && either.data != null) {
+        adapter.updateRepos(either.data)
+      } else {
+        if (either?.error == ApiError.REPOS) {
+          Toast.makeText(context, getString(R.string.error_retrieving_repos), Toast.LENGTH_SHORT).show()
+        }
+      }
     })
   }
 }

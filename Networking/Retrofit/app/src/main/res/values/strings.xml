@@ -17,4 +17,7 @@
   <string name="username_hint">username</string>
   <string name="username_title">GitHub Username</string>
   <string name="username_ok">OK</string>
+    <string name="error_retrieving_user">Error retrieving user</string>
+  <string name="error_retrieving_repos">Error retrieving repos</string>
+  <string name="error_retrieving_gists">Error retrieving gists</string>
 </resources>
