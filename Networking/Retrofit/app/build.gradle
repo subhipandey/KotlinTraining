@@ -16,6 +16,11 @@ android {
     vectorDrawables.useSupportLibrary = true
   }
   buildTypes {
+    debug{
+      buildConfigField "string", "CLIENT_ID", "\"Iv1.ac2792a9e9632633\""
+      buildConfigField "string", "CLIENT_SECRET", "\"7442f6ce42d24066d55c0cfe2f13a819a7d86297\""
+      buildConfigField "string", "REDIRECT_URI", "\"w00tze://callback\""
+    }
     release {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

@@ -15,10 +15,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.subhipandey.android.w00tze.R
-import com.subhipandey.android.w00tze.model.ApiError
-import com.subhipandey.android.w00tze.model.Either
-import com.subhipandey.android.w00tze.model.Gist
-import com.subhipandey.android.w00tze.model.Status
+import com.subhipandey.android.w00tze.model.*
 import com.subhipandey.android.w00tze.viewmodel.GistsViewModel
 import kotlinx.android.synthetic.main.fragment_gists.*
 
@@ -42,7 +39,6 @@ class GistsFragment : Fragment(), GistAdapter.GistAdapterListener {
 
 
 
-
     gistsViewModel.getGists().observe(this, Observer<Either<List<Gist>>> { either ->
       if (either?.status == Status.SUCCESS && either.data != null) {
         adapter.updateGists(either.data)
@@ -58,11 +54,27 @@ class GistsFragment : Fragment(), GistAdapter.GistAdapterListener {
     }
   }
 
-  override fun deleteGist(gist: Gist) {
-    // TODO: call view model
-  }
+    override fun deleteGist(gist: Gist) {
+        gistsViewModel.deleteGist(gist).observe(this, Observer<Either<EmptyResponse>> { either ->
+            if (either?.status == Status.SUCCESS) {
+                adapter.deleteGist(gist)
+            } else {
+                if (either?.error == ApiError.DELETE_GIST) {
+                    Toast.makeText(context, getString(R.string.error_deleting_gist), Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+    }
 
   internal fun sendGist(description: String, filename: String, content: String) {
-    println("Sending gist: $description - $filename - $content")
+    gistsViewModel.sendGist(description, filename, content).observe(this, Observer<Either<Gist>> { either ->
+      if (either?.status == Status.SUCCESS && either.data != null) {
+        adapter.addGist(either.data)
+      } else {
+        if (either?.error == ApiError.POST_GIST) {
+          Toast.makeText(context, getString(R.string.error_posting_gist), Toast.LENGTH_SHORT).show()
+        }
+      }
+    })
   }
 }

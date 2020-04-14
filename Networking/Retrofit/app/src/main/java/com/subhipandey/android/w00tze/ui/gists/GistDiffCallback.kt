@@ -2,7 +2,6 @@
 
 package com.subhipandey.android.w00tze.ui.gists
 
-import android.support.v7.util.DiffUtil
 import androidx.recyclerview.widget.DiffUtil
 import com.subhipandey.android.w00tze.model.Gist
 
@@ -11,8 +10,8 @@ class GistDiffCallback(private val oldGists: List<Gist>,
                        private val newGists: List<Gist>) : DiffUtil.Callback() {
 
   override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-//    return oldGists[oldItemPosition].id == newGists[newItemPosition].id // TODO: uncomment
-    return false
+    return oldGists[oldItemPosition].id == newGists[newItemPosition].id
+
   }
 
   override fun getOldListSize() = oldGists.size
