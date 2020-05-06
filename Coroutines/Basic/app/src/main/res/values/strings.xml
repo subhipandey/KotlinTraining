@@ -1,3 +1,7 @@
 <resources>
-  <string name="app_name">KotlinCoroutinesFundamentals</string>
+    <string name="app_name">Paneer Directory</string>
+    <string name="nothing_found">No paneer found</string>
+    <string name="search">search</string>
+  <string name="error_inserting_cheeses">Error inserting cheeses!</string>
+  <string name="success">Paneer have been inserted into the database!</string>
 </resources>
