@@ -20,8 +20,7 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
 
     val mainLooper = mainLooper
-
-    // Your code
+    GlobalScope
     Thread(Runnable {
       val imageUrl = URL("https://wallpaperplay.com/walls/full/1/c/7/38027.jpg")
       val connection = imageUrl.openConnection() as HttpURLConnection

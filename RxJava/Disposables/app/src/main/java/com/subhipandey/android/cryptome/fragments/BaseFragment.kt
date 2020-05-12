@@ -147,9 +147,9 @@ open class BaseFragment : Fragment(), CryptoDataAdapter.Listener, SwipeRefreshLa
     Log.d("handlleError", "Error: $t")
   }
 
-  override fun onItemClick(cryptoData: CryptoData) {
+  override fun onItemClick(snackData: CryptoData) {
     val intent = Intent(activity, DetailActivity::class.java)
-    intent.putExtra("CryptoName", cryptoData.name)
+    intent.putExtra("Snack Name", snackData.name)
     startActivity(intent)
   }
 
