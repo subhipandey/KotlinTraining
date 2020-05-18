@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">510986434203-uj0dbkppjn4p7p3v1g61qtqdfm2i22ke.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://drink-it-5e016.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">510986434203</string>
+    <string name="google_api_key" translatable="false">AIzaSyC_4OoRHHt8aipAKFKpb17AUlZQDJ1A_Nc</string>
+    <string name="google_app_id" translatable="false">1:510986434203:android:f031fda985a12a426a383e</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyC_4OoRHHt8aipAKFKpb17AUlZQDJ1A_Nc</string>
+    <string name="google_storage_bucket" translatable="false">drink-it-5e016.appspot.com</string>
+    <string name="project_id" translatable="false">drink-it-5e016</string>
+</resources>
