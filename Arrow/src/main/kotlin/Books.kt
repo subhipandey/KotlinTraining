@@ -104,6 +104,17 @@ fun main() {
   val myBook: Book = androidBook
   println("myBook description: $myBook")
 
+  data class MutableBook(
+    var ISDN: String,
+    var name: String,
+    var pages: Int,
+    var price: Price,
+    var weight: Double,
+    var year: Int,
+    var author: String
+  )
+
+
 
 }
 
