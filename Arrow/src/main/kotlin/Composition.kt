@@ -1,3 +1,6 @@
+import arrow.core.compose
+
+
 typealias Func<A, B> = (A) -> B
 val getPrice: Func<Book, Price> = { book -> book.price }
 
@@ -8,9 +11,6 @@ infix fun <A, B, C> Func<B, C>.after(f: Func<A, B>): Func<A, C> = { x: A -> this
 
 fun main() {
 
-    val result: String = formatPrice(getPrice(books[0]))
-    println(result)
-
-    val compositeResult: String = (formatPrice after getPrice)(books[0])
+    val compositeResult: String = (formatPrice compose getPrice)(books[0])
     println(compositeResult)
 }
