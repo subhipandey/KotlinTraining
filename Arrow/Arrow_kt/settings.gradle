@@ -1,0 +1,5 @@
+rootProject.name = 'FunctorApp'
+include("data-types")
+include("app")
+include("functions")
+include("custom-maybe")
