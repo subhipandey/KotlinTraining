@@ -1,6 +1,6 @@
 
 
-package com.subhipandey.android.rwandroidtutorial
+package com.subhipandey.android.subhipandey
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.subhipandey.android.rwandroidtutorial.database.PlayerListItem
-import com.subhipandey.android.rwandroidtutorial.ui.CircleTransformation
+import com.subhipandey.android.subhipandey.database.PlayerListItem
+import com.subhipandey.android.subhipandey.ui.CircleTransformation
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.player_row.view.*
 import java.util.*

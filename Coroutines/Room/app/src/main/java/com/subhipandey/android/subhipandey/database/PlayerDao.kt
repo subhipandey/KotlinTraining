@@ -1,6 +1,6 @@
 
 
-package com.subhipandey.android.rwandroidtutorial.database
+package com.subhipandey.android.subhipandey.database
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -15,4 +15,8 @@ interface PlayerDao {
 
   @Query("SELECT id, firstName, lastName, country, favorite, imageUrl FROM players")
   fun getAllPlayers(): List<PlayerListItem>
+
+  @Insert(onConflict = OnConflictStrategy.IGNORE)
+  suspend fun insertAllPlayers(players: List<Player>)
+
 }

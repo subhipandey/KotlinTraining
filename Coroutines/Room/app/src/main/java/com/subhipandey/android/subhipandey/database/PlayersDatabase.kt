@@ -1,4 +1,4 @@
-package com.subhipandey.android.rwandroidtutorial.database
+package com.subhipandey.android.subhipandey.database
 
 import android.content.Context
 import androidx.room.Database
@@ -26,7 +26,7 @@ abstract class PlayersDatabase : RoomDatabase() {
 
             }
         }
-        private fun prePopulateDatabase(playerDao: PlayerDao){
+        private suspend fun prePopulateDatabase(playerDao: PlayerDao){
             val jsonString =
                     resources.openRawResource(R.rawplayers).bufferedReader().use {
                         it.readText()

@@ -1,6 +1,6 @@
 
 
-package com.subhipandey.android.rwandroidtutorial
+package com.subhipandey.android.subhipandey
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.subhipandey.android.rwandroidtutorial.details.DetailsFragment
+import com.subhipandey.android.subhipandey.details.DetailsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     playerViewModel = ViewModelProvider(this).get(PlayerViewModel::class.java)
 
     //TODO replace below lines with viewmodel observation
-    playerViewModel.populateDatabase()
+
     val players = playerViewModel.getAllPlayers()
     adapter.swapData(players)
   }

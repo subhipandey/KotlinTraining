@@ -28,7 +28,7 @@
  * THE SOFTWARE.
  */
 
-package com.subhipandey.android.rwandroidtutorial.ui
+package com.subhipandey.android.subhipandey.ui
 
 import android.graphics.*
 import com.squareup.picasso.Transformation

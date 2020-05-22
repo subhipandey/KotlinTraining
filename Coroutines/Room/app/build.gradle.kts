@@ -9,7 +9,7 @@ android {
   compileSdkVersion(AndroidSdk.compile)
 
   defaultConfig {
-    applicationId = "com.subhipandey.android.rwandroidtutorial"
+    applicationId = "com.subhipandey.android.subhipandey"
     minSdkVersion(AndroidSdk.min)
     targetSdkVersion(AndroidSdk.target)
     versionCode = 1

@@ -1,6 +1,6 @@
 
 
-package com.subhipandey.android.rwandroidtutorial.database
+package com.subhipandey.android.subhipandey.database
 
 import android.os.Parcelable
 import androidx.lifecycle.LiveData

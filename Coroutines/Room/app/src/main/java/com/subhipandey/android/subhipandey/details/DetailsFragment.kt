@@ -1,6 +1,6 @@
 
 
-package com.subhipandey.android.rwandroidtutorial.details
+package com.subhipandey.android.subhipandey.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,10 +11,10 @@ import android.widget.CheckBox
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.subhipandey.android.rwandroidtutorial.R
-import com.subhipandey.android.rwandroidtutorial.database.Player
-import com.subhipandey.android.rwandroidtutorial.database.PlayerListItem
-import com.subhipandey.android.rwandroidtutorial.ui.CircleTransformation
+import com.subhipandey.android.subhipandey.R
+import com.subhipandey.android.subhipandey.database.Player
+import com.subhipandey.android.subhipandey.database.PlayerListItem
+import com.subhipandey.android.subhipandey.ui.CircleTransformation
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_details.*
 import java.text.NumberFormat
