@@ -32,4 +32,6 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
   fun deletePlayer(player: Player) = viewModelScope.launch {
     repository.deletePlayer(player)
   }
+
+
 }

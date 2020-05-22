@@ -82,7 +82,14 @@ class DetailsFragment : DialogFragment(), Toolbar.OnMenuItemClickListener {
 
     arguments?.getParcelable<PlayerListItem>(PLAYER_KEY)?.let { playerListItem = it }
 
-    //TODO observe viewmodel changes
+    detailViewModel.getPlayer(playerListItem).observe(viewLifecycleOwner, Observer {
+
+      this.player = it
+
+
+      displayPlayer()
+    })
+
   }
 
   private fun displayPlayer() {

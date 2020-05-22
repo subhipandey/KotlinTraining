@@ -40,7 +40,10 @@ class MainActivity : AppCompatActivity() {
 
     playerViewModel = ViewModelProvider(this).get(PlayerViewModel::class.java)
 
-    //TODO replace below lines with viewmodel observation
+    playerViewModel.getAllPlayers().observe(this, Observer<List<PlayerListItem>> { players ->
+      adapter.swapData(players)
+    })
+
 
     val players = playerViewModel.getAllPlayers()
     adapter.swapData(players)

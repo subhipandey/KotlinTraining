@@ -14,7 +14,12 @@ interface PlayerDao {
   fun insertAllPlayers(players: List<Player>)
 
   @Query("SELECT id, firstName, lastName, country, favorite, imageUrl FROM players")
-  fun getAllPlayers(): List<PlayerListItem>
+  fun getAllPlayers(): LiveData<List<PlayerListItem>>
+
+  @Query("SELECT * FROM players WHERE id = :id")
+  fun getPlayer(id: Int): LiveData<Player>
+
+
 
   @Insert(onConflict = OnConflictStrategy.IGNORE)
   suspend fun insertAllPlayers(players: List<Player>)
