@@ -19,6 +19,14 @@ interface PlayerDao {
   @Query("SELECT * FROM players WHERE id = :id")
   fun getPlayer(id: Int): LiveData<Player>
 
+    @Update
+    suspend fun updatePlayer(player: Player)
+
+  @Delete
+  suspend fun deletePlayer(player: Player)
+
+
+
 
 
   @Insert(onConflict = OnConflictStrategy.IGNORE)

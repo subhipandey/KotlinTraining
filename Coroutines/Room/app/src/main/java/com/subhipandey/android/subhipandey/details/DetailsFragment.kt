@@ -85,9 +85,17 @@ class DetailsFragment : DialogFragment(), Toolbar.OnMenuItemClickListener {
     detailViewModel.getPlayer(playerListItem).observe(viewLifecycleOwner, Observer {
 
       this.player = it
+        detailViewModel.getPlayer(playerListItem).observe(this, Observer {
+            this.player = it
+
+            setupFavoriteToggle(checkbox, it) // called the method here
+
+            displayPlayer()
+        })
 
 
-      displayPlayer()
+
+        displayPlayer()
     })
 
   }
@@ -114,7 +122,16 @@ class DetailsFragment : DialogFragment(), Toolbar.OnMenuItemClickListener {
   }
 
   private fun setupFavoriteToggle(checkBox: CheckBox, player : Player){
-    // TODO setup checkbox to toggle favorite status of player
+
+      checkBox.setOnCheckedChangeListener { _, b ->
+
+          player.favorite = b
+
+          detailViewModel.updatePlayer(player)
+      }
+
+      checkBox.isChecked = player.favorite
+
   }
 
   private fun deleteCurrentPlayer(){
