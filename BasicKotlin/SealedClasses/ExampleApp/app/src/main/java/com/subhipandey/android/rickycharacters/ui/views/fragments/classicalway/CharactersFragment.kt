@@ -43,22 +43,34 @@ class CharactersFragment : Fragment(R.layout.fragment_characters) {
   }
 
   private fun fetchCharacters() {
-   lifecycleScope.launchWhenStarted {
-     val response = apiService.getCharacters()
-     val charactersResponseModel = response.body()
-     if (response.isSuccessful){
-       hideEmptyView()
-       showCharacters(charactersResponseModel)
-     }
-   }
+    lifecycleScope.launchWhenStarted {
+      try {
+        val response = apiService.getCharacters()
+        val charactersResponseModel = response.body()
+        if (response.isSuccessful) {
+          hideEmptyView()
+          showCharacters(charactersResponseModel)
+        } else {
+          handleError("An error occurred")
+        }
 
-    else {
-      handleError("An error occurred")
+      } catch (error: IOException) {
+        showEmptyView()
+        when(response.code()) {
+          403 -> handleError("Access to resource is forbidden")
+          404 -> handleError("Resource not found")
+          500 -> handleError("Internal server error")
+          502 -> handleError("Bad Gateway")
+          301 -> handleError("Resource has been removed permanently")
+          302 -> handleError("Resource moved, but has been found")
+          else -> handleError("All cases have not been covered!!")
+        }
     }
 
-    //TODO 3 Catch errors with try-catch statement
 
-    //TODO 4 Catch HTTP error codes
+
+
+
 
     //TODO 5 Add refresh dialog
 
