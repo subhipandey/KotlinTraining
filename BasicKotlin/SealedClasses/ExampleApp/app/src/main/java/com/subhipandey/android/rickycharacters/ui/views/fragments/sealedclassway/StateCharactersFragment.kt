@@ -34,10 +34,14 @@ class StateCharactersFragment : Fragment(R.layout.fragment_characters) {
   }
 
   private fun getCharacters() {
-    // TODO 8
+    lifecycleScope.launchWhenStarted{
+      showRefreshDailog()
+      val charactersResult = fetchCharacters()
+      handleCharactersResult(charactersResult)
+    }
   }
 
-  // TODO 7
+
 
   private fun displayCharacterDetails(character: Character){
     val characterFragmentAction =

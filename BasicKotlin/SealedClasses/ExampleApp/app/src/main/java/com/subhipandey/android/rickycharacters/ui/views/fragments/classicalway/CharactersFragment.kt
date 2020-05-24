@@ -42,40 +42,50 @@ class CharactersFragment : Fragment(R.layout.fragment_characters) {
 
   }
 
-  private fun fetchCharacters() {
-    lifecycleScope.launchWhenStarted {
-      try {
-        val response = apiService.getCharacters()
-        val charactersResponseModel = response.body()
-        if (response.isSuccessful) {
-          if (response.body() != null) {
-            hideEmptyView()
-            showCharacters(charactersResponseModel)
-          } else {
-            showEmptyView()
-            handleError("No characters found")
-          }
-
+  private suspend fun fetchCharacters() : NetworkState {
+    return try {
+      val response = apiService.getCharacters()
+      if (response.isSuccessful) {
+        if (response != null) {
+          NetworkState.Success(response.body()!!)
         } else {
-          showEmptyView()
-          when (response.code()) {
-            403 -> handleError("Access to resource is forbidden")
-            404 -> handleError("Resource not found")
-            500 -> handleError("Internal server error")
-            502 -> handleError("Bad Gateway")
-            301 -> handleError("Resource has been removed permanently")
-            302 -> handleError("Resource moved, but has been found")
-            else -> handleError("All cases have not been covered!!")
-          }
+          NetworkState.InvalidData
         }
-      } catch (error : IOException) {
-        showEmptyView()
-        handleError(error.message!!)
+      } else {
+        when(response.code()) {
+          403 -> NetworkState.HttpErrors.ResourceForbidden(response.message())
+          404 -> NetworkState.HttpErrors.ResourceNotFound(response.message())
+          500 -> NetworkState.HttpErrors.InternalServerError(response.message())
+          502 -> NetworkState.HttpErrors.BadGateWay(response.message())
+          301 -> NetworkState.HttpErrors.ResourceRemoved(response.message())
+          302 -> NetworkState.HttpErrors.RemovedResourceFound(response.message())
+          else -> NetworkState.Error(response.message())
+        }
       }
+
+    } catch (error : IOException) {
+      NetworkState.NetworkException(error.message!!)
     }
+  }
+
+  private fun handleCharactersResult(networkState: NetworkState) {
+    return when(networkState) {
+      is NetworkState.Success -> showCharacters(networkState.data)
+      is NetworkState.HttpErrors.ResourceForbidden -> handleError(networkState.exception)
+      is NetworkState.HttpErrors.ResourceNotFound -> handleError(networkState.exception)
+      is NetworkState.HttpErrors.InternalServerError -> handleError(networkState.exception)
+      is NetworkState.HttpErrors.BadGateWay -> handleError(networkState.exception)
+      is NetworkState.HttpErrors.ResourceRemoved -> handleError(networkState.exception)
+      is NetworkState.HttpErrors.RemovedResourceFound -> handleError(networkState.exception)
+      is NetworkState.InvalidData -> showEmptyView()
+      is NetworkState.Error -> handleError(networkState.error)
+      is NetworkState.NetworkException -> handleError(networkState.error)
+    }
+  }
 
 
-    private fun showCharacters(charactersResponseModel: CharactersResponseModel?) {
+
+  private fun showCharacters(charactersResponseModel: CharactersResponseModel?) {
     charactersAdapter.updateList(charactersResponseModel!!.results)
   }
 
