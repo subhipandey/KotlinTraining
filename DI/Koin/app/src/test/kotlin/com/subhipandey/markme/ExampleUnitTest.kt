@@ -1,39 +1,56 @@
-/*
- * Copyright (c) 2019 Razeware LLC
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+
 
 package com.subhipandey.markme
 
+import com.nhaarman.mockito_kotlin.argumentCaptor
+import com.nhaarman.mockito_kotlin.eq
+import com.nhaarman.mockito_kotlin.mock
+import com.subhipandey.markme.di.applicationModule
+import com.subhipandey.markme.feature.FeatureContract
+import com.subhipandey.markme.model.Student
+import org.junit.After
 import org.junit.Test
 
 import org.junit.Assert.*
+import org.junit.Before
+import org.koin.core.parameter.parametersOf
+import org.koin.standalone.StandAloneContext.startKoin
+import org.koin.standalone.StandAloneContext.stopKoin
+import org.koin.standalone.inject
+import org.koin.test.KoinTest
+import org.koin.test.declareMock
+import org.mockito.Mockito
 
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class FeaturePresenterTest : KoinTest {
+
+    private val view: FeatureContract.View<Student> = mock()
+    private val repository: FeatureContract.Model<Student> by inject()
+    private val presenter: FeatureContract.Presenter<Student> by inject { parametersOf(view) }
+
+    @Before
+    fun before() {
+        startKoin(listOf(applicationModule))
+        declareMock<FeatureContract.Model<Student>>()
+    }
+
+    @After
+    fun after() {
+        stopKoin()
+    }
+
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun `check that onSave2DbClick invokes a repository callback`() {
+        val studentList = listOf(
+                Student(0, "Pablo", true, 8),
+                Student(1, "Irene", false, 10))
+        val dummyCallback = argumentCaptor<(String) -> Unit>()
+
+        presenter.onSave2DbClick(studentList)
+        Mockito.verify(repository).add2Db(data = eq(studentList), callback = dummyCallback.capture())
     }
 }
