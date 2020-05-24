@@ -48,36 +48,34 @@ class CharactersFragment : Fragment(R.layout.fragment_characters) {
         val response = apiService.getCharacters()
         val charactersResponseModel = response.body()
         if (response.isSuccessful) {
-          hideEmptyView()
-          showCharacters(charactersResponseModel)
-        } else {
-          handleError("An error occurred")
-        }
+          if (response.body() != null) {
+            hideEmptyView()
+            showCharacters(charactersResponseModel)
+          } else {
+            showEmptyView()
+            handleError("No characters found")
+          }
 
-      } catch (error: IOException) {
-        showEmptyView()
-        when(response.code()) {
-          403 -> handleError("Access to resource is forbidden")
-          404 -> handleError("Resource not found")
-          500 -> handleError("Internal server error")
-          502 -> handleError("Bad Gateway")
-          301 -> handleError("Resource has been removed permanently")
-          302 -> handleError("Resource moved, but has been found")
-          else -> handleError("All cases have not been covered!!")
+        } else {
+          showEmptyView()
+          when (response.code()) {
+            403 -> handleError("Access to resource is forbidden")
+            404 -> handleError("Resource not found")
+            500 -> handleError("Internal server error")
+            502 -> handleError("Bad Gateway")
+            301 -> handleError("Resource has been removed permanently")
+            302 -> handleError("Resource moved, but has been found")
+            else -> handleError("All cases have not been covered!!")
+          }
         }
+      } catch (error : IOException) {
+        showEmptyView()
+        handleError(error.message!!)
+      }
     }
 
 
-
-
-
-
-    //TODO 5 Add refresh dialog
-
-    //TODO 6 Handle null response body
-  }
-
-  private fun showCharacters(charactersResponseModel: CharactersResponseModel?) {
+    private fun showCharacters(charactersResponseModel: CharactersResponseModel?) {
     charactersAdapter.updateList(charactersResponseModel!!.results)
   }
 
