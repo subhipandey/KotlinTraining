@@ -12,7 +12,7 @@ fun main(){
   val printErrorFun = { ex: FetcherException -> println("Error with message ${ex.message}") }
 
   val printString = { str: String -> print(str) }
-  
+
   FunctionalFetcher.fetch(error_url)
     .bimap(printErrorFun, printString)
 }
