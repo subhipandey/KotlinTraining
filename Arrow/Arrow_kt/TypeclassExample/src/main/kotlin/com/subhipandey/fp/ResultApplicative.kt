@@ -14,4 +14,7 @@ class ResultApplicative {
     }
   }
 
+  infix fun <E, A, B> Result<E, (A) -> B>.appl(a: Result<E, A>) = a.ap(this)
+
+
 }

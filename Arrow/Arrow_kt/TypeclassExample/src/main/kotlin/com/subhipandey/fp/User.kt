@@ -8,12 +8,12 @@ val userBuilder = { id: Int -> { name: String -> { email: String -> User(id, nam
 
 fun main() {
   val idAp = justResult(1)
-
-  val missingNameAp = Error(IllegalStateException("Missing Name!"))
+  val nameAp = justResult("Max")
+  val missingNameAp = Error(IllegalStateException("Missing name!"))
   val emailAp = justResult("max@maxcarli.it")
   val userAp = justResult(userBuilder)
 
-  emailAp.ap(missingNameAp.ap(idAp.ap(userAp))).mapLeft {
-    println(it)
-  }
+  (userAp appl idAp appl nameAp appl emailAp).mapRight { println(it) }
+
+  (userAp appl idAp appl missingNameAp appl emailAp).mapLeft { println(it) }
 }
