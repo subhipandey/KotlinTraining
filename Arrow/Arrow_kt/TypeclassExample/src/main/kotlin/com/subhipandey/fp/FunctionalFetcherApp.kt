@@ -1,5 +1,7 @@
 package com.subhipandey.fp
 
+import java.net.URL
+
 object FunctionalFetcherResult {
 
   fun fetch(url: URL): Result<FetcherException, String> {
@@ -15,7 +17,7 @@ object FunctionalFetcherResult {
         return Success(result)
       }
     } catch (ioe: IOException) {
-      
+
       return Error(FetcherException(ioe.localizedMessage))
     }
   }
