@@ -1,6 +1,6 @@
 
 
-package com.raywenderlich.android.taskie.ui.notes.dialog
+package com.subhipandey.android.taskie.ui.notes.dialog
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
-import com.raywenderlich.android.taskie.R
-import com.raywenderlich.android.taskie.model.PriorityColor
-import com.raywenderlich.android.taskie.model.Task
-import com.raywenderlich.android.taskie.model.request.AddTaskRequest
-import com.raywenderlich.android.taskie.networking.RemoteApi
-import com.raywenderlich.android.taskie.utils.toast
+import com.subhipandey.android.taskie.R
+import com.subhipandey.android.taskie.model.PriorityColor
+import com.subhipandey.android.taskie.model.Task
+import com.subhipandey.android.taskie.model.request.AddTaskRequest
+import com.subhipandey.android.taskie.networking.RemoteApi
+import com.subhipandey.android.taskie.utils.toast
 import kotlinx.android.synthetic.main.fragment_dialog_new_task.*
 
 /**
