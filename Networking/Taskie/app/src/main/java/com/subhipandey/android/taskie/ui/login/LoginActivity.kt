@@ -33,6 +33,10 @@ class LoginActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_login)
     initUi()
+
+    if (App.getToken().isNotBlank()){
+      startActivity(MainActivity.getIntent(this))
+    }
   }
 
   private fun initUi() {

@@ -2,6 +2,7 @@
 
 package com.subhipandey.android.taskie.ui.notes.dialog
 
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.subhipandey.android.taskie.R
 import com.subhipandey.android.taskie.model.PriorityColor
 import com.subhipandey.android.taskie.model.Task
 import com.subhipandey.android.taskie.model.request.AddTaskRequest
+import com.subhipandey.android.taskie.networking.NetworkStatusChecker
 import com.subhipandey.android.taskie.networking.RemoteApi
 import com.subhipandey.android.taskie.utils.toast
 import kotlinx.android.synthetic.main.fragment_dialog_new_task.*
@@ -25,6 +27,11 @@ class AddTaskDialogFragment : DialogFragment() {
 
   private var taskAddedListener: TaskAddedListener? = null
   private val remoteApi = RemoteApi()
+
+  private val networkStatusChecker by lazy {
+    NetworkStatusChecker(activity?.getSystemService(ConnectivityManager::class.java))
+
+  }
 
   interface TaskAddedListener {
     fun onTaskAdded(task: Task)
@@ -77,14 +84,19 @@ class AddTaskDialogFragment : DialogFragment() {
     val content = newTaskDescriptionInput.text.toString()
     val priority = prioritySelector.selectedItemPosition + 1
 
-    remoteApi.addTask(AddTaskRequest(title, content, priority)) { task, error ->
-      if (task != null) {
-        onTaskAdded(task)
-      } else if (error != null) {
-        onTaskAddFailed()
+    networkStatusChecker.performIfConnectedToInternet {
+
+      remoteApi.addTask(AddTaskRequest(title, content, priority)) { task, error ->
+        activity?.runOnUiThread {
+          if (task != null) {
+            onTaskAdded(task)
+          } else if (error != null) {
+            onTaskAddFailed()
+          }
+        }
       }
+      clearUi()
     }
-    clearUi()
   }
 
 
