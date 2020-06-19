@@ -2,6 +2,7 @@
 
 package com.subhipandey.android.taskie.ui.notes.dialog
 
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.subhipandey.android.taskie.R
+import com.subhipandey.android.taskie.networking.NetworkStatusChecker
 import com.subhipandey.android.taskie.networking.RemoteApi
 import kotlinx.android.synthetic.main.fragment_dialog_task_options.*
 
@@ -43,14 +45,14 @@ class TaskOptionsDialogFragment : DialogFragment() {
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+                            savedInstanceState: Bundle?): View? {
     return inflater.inflate(R.layout.fragment_dialog_task_options, container)
   }
 
   override fun onStart() {
     super.onStart()
     dialog?.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-        WindowManager.LayoutParams.WRAP_CONTENT)
+            WindowManager.LayoutParams.WRAP_CONTENT)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,7 +74,7 @@ class TaskOptionsDialogFragment : DialogFragment() {
     }
 
     completeTask.setOnClickListener {
-      remoteApi.completeTask { error ->
+      remoteApi.completeTask(taskId) { error ->
         if (error == null) {
           taskOptionSelectedListener?.onTaskCompleted(taskId)
         }
