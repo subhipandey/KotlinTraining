@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
+import com.subhipandey.android.taskie.App
 import com.subhipandey.android.taskie.R
 import com.subhipandey.android.taskie.networking.NetworkStatusChecker
 import com.subhipandey.android.taskie.networking.RemoteApi
@@ -21,7 +22,7 @@ class TaskOptionsDialogFragment : DialogFragment() {
 
   private var taskOptionSelectedListener: TaskOptionSelectedListener? = null
 
-  private val remoteApi = RemoteApi()
+  private val remoteApi = App.remoteApi
 
   companion object {
     private const val KEY_TASK_ID = "task_id"

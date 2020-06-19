@@ -20,7 +20,9 @@ import java.net.URL
 
 const val BASE_URL = "https://taskie-rw.herokuapp.com"
 
-class RemoteApi {
+
+
+class RemoteApi(private val apiService: RemoteApiService) {
 
     private val gson = Gson()
 
@@ -137,7 +139,9 @@ class RemoteApi {
                     }
 
                     val tasksResponse = gson.fromJson(response.toString(), GetTasksResponse::class.java)
-                    onTasksReceived(tasksResponse.notes, null)
+                    val unfinishedTasks = tasksResponse.notes.filter { !it.isCompleted }
+
+                    onTasksReceived(unfinishedTasks, null)
                 }
             } catch (error: Throwable) {
                 onTasksReceived(emptyList(), error)
@@ -153,7 +157,10 @@ class RemoteApi {
 
     fun completeTask(taskId: String, onTaskCompleted: (Throwable?) -> Unit) {
         Thread(Runnable {
-            val connection = URL("$BASE_URL/api/note/complete?id=$taskId").openConnection() as HttpURLConnection
+            val connection = URL(
+                    "$BASE_URL/api/note/complete?id=$taskId"
+            ).openConnection() as HttpURLConnection
+
             connection.requestMethod = "POST"
             connection.setRequestProperty("Content-Type", "application/json")
             connection.setRequestProperty("Accept", "application/json")
@@ -163,6 +170,26 @@ class RemoteApi {
             connection.doOutput = true
             connection.doInput = true
 
+            try {
+                val reader = InputStreamReader(connection.inputStream)
+
+                reader.use { input ->
+                    val response = StringBuilder()
+                    val bufferedReader = BufferedReader(input)
+
+                    bufferedReader.useLines { lines ->
+                        lines.forEach {
+                            response.append(it.trim())
+                        }
+                    }
+
+                    onTaskCompleted(null)
+                }
+            } catch (error: Throwable) {
+                onTaskCompleted(error)
+            }
+
+            connection.disconnect()
         }).start()
     }
 
@@ -177,30 +204,6 @@ class RemoteApi {
             connection.connectTimeout = 10000
             connection.doOutput = true
             connection.doInput = true
-
-            try {
-
-
-                val reader = InputStreamReader(connection.inputStream)
-
-                reader.use { input ->
-                    val response = StringBuilder()
-                    val bufferedReader = BufferedReader(input)
-
-                    bufferedReader.useLines { lines ->
-                        lines.forEach {
-                            response.append(it.trim())
-                        }
-                    }
-
-                    val task = gson.fromJson(response.toString(), Task::class.java)
-
-                    onTaskCompleted(null)
-                }
-            } catch (error: Throwable) {
-
-            }
-            connection.disconnect()
 
             val request = gson.toJson(addTaskRequest)
 
@@ -221,8 +224,7 @@ class RemoteApi {
                         }
                     }
 
-                    val tasksResponse = gson.fromJson(response.toString(), GetTasksResponse::class.java)
-                    onTasksReceived.(tasksResponse.notes.filter { !it.isCompleted }, null)
+                    val task = gson.fromJson(response.toString(), Task::class.java)
 
                     onTaskCreated(task, null)
                 }
@@ -235,6 +237,6 @@ class RemoteApi {
     }
 
     fun getUserProfile(onUserProfileReceived: (UserProfile?, Throwable?) -> Unit) {
-        onUserProfileReceived(UserProfile("mail@mail.com", "Subhi", 10), null)
+        onUserProfileReceived(UserProfile("mail@mail.com", "Filip", 10), null)
     }
 }

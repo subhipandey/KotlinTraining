@@ -3,6 +3,7 @@ package com.subhipandey.android.taskie.ui.register
 import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.subhipandey.android.taskie.App
 import com.subhipandey.android.taskie.R
 import com.subhipandey.android.taskie.model.request.UserDataRequest
 import com.subhipandey.android.taskie.networking.NetworkStatusChecker
@@ -21,7 +22,7 @@ class RegisterActivity : AppCompatActivity() {
         NetworkStatusChecker(getSystemService(ConnectivityManager::class.java))
     }
 
-    private val remoteApi = RemoteApi()
+    private val remoteApi = App.remoteApi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
