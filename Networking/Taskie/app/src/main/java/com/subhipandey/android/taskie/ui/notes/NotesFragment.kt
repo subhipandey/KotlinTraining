@@ -2,6 +2,7 @@
 
 package com.subhipandey.android.taskie.ui.notes
 
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.subhipandey.android.taskie.R
 import com.subhipandey.android.taskie.model.Task
+import com.subhipandey.android.taskie.networking.NetworkStatusChecker
 import com.subhipandey.android.taskie.networking.RemoteApi
 import com.subhipandey.android.taskie.ui.notes.dialog.AddTaskDialogFragment
 import com.subhipandey.android.taskie.ui.notes.dialog.TaskOptionsDialogFragment
@@ -22,13 +24,16 @@ import kotlinx.android.synthetic.main.fragment_notes.*
  * Fetches and displays notes from the API.
  */
 class NotesFragment : Fragment(), AddTaskDialogFragment.TaskAddedListener,
-    TaskOptionsDialogFragment.TaskOptionSelectedListener {
+        TaskOptionsDialogFragment.TaskOptionSelectedListener {
 
   private val adapter by lazy { TaskAdapter(::onItemSelected) }
   private val remoteApi = RemoteApi()
+  private val networkStatusChecker by lazy {
+    NetworkStatusChecker(activity?.getSystemService(ConnectivityManager::class.java))
+  }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?): View? {
+                            savedInstanceState: Bundle?): View? {
     return inflater.inflate(R.layout.fragment_notes, container, false)
   }
 
@@ -68,11 +73,15 @@ class NotesFragment : Fragment(), AddTaskDialogFragment.TaskAddedListener,
 
   private fun getAllTasks() {
     progress.visible()
-    remoteApi.getTasks { tasks, error ->
-      if (tasks.isNotEmpty()) {
-        onTaskListReceived(tasks)
-      } else if (error != null) {
-        onGetTasksFailed()
+    networkStatusChecker.performIfConnectedToInternet {
+      remoteApi.getTasks { tasks, error ->
+        activity?.runOnUiThread {
+          if (tasks.isNotEmpty()) {
+            onTaskListReceived(tasks)
+          } else if (error != null) {
+            onGetTasksFailed()
+          }
+        }
       }
     }
   }
