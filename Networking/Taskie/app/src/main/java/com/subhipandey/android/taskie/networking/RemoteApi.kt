@@ -1,6 +1,6 @@
 package com.subhipandey.android.taskie.networking
 
-import com.google.gson.Gson
+
 import com.subhipandey.android.taskie.App
 import com.subhipandey.android.taskie.model.Task
 import com.subhipandey.android.taskie.model.UserProfile
@@ -19,6 +19,7 @@ import java.io.InputStreamReader
 import java.lang.StringBuilder
 import java.net.HttpURLConnection
 import java.net.URL
+import com.google.gson.Gson
 
 /**
  * Holds decoupled logic for all the API calls.
@@ -79,7 +80,7 @@ class RemoteApi(private val apiService: RemoteApiService) {
                 MediaType.parse("application/json"), gson.toJson(userDataRequest)
         )
 
-        apiService.registerUser(body).enqueue(object : Callback<ResponseBody>{
+        apiService.registerUser(body).enqueue(object : Callback<ResponseBody> {
             override fun onFailure(call: Call<ResponseBody>, error: Throwable) {
                 onUserCreated(null, error)
             }
@@ -94,40 +95,29 @@ class RemoteApi(private val apiService: RemoteApiService) {
     }
 
     fun getTasks(onTasksReceived: (List<Task>, Throwable?) -> Unit) {
-        Thread(Runnable {
-            val connection = URL("$BASE_URL/api/note").openConnection() as HttpURLConnection
-            connection.requestMethod = "GET"
-            connection.setRequestProperty("Content-Type", "application/json")
-            connection.setRequestProperty("Accept", "application/json")
-            connection.setRequestProperty("Authorization", App.getToken())
-            connection.readTimeout = 10000
-            connection.connectTimeout = 10000
-            connection.doInput = true
-
-            try {
-                val reader = InputStreamReader(connection.inputStream)
-
-                reader.use { input ->
-                    val response = StringBuilder()
-                    val bufferedReader = BufferedReader(input)
-
-                    bufferedReader.useLines { lines ->
-                        lines.forEach {
-                            response.append(it.trim())
-                        }
-                    }
-
-                    val tasksResponse = gson.fromJson(response.toString(), GetTasksResponse::class.java)
-                    val unfinishedTasks = tasksResponse.notes.filter { !it.isCompleted }
-
-                    onTasksReceived(unfinishedTasks, null)
-                }
-            } catch (error: Throwable) {
+        apiService.getNotes(App.getToken()).enqueue(object : Callback<ResponseBody> {
+            override fun onFailure(call: Call<ResponseBody>, error: Throwable) {
                 onTasksReceived(emptyList(), error)
             }
 
-            connection.disconnect()
-        }).start()
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                val jsonBody = response.body()?.string()
+
+                if (jsonBody == null) {
+                    onTasksReceived(emptyList(), NullPointerException("No data available!"))
+                    return
+                }
+
+                val data = gson.fromJson(jsonBody, GetTasksResponse::class.java)
+
+                if (data != null && data.notes.isNotEmpty()) {
+                    onTasksReceived(data.notes.filter { !it.isCompleted }, null)
+                } else {
+                    onTasksReceived(emptyList(), NullPointerException("No data available!"))
+                }
+            }
+        })
+    }
     }
 
     fun deleteTask(onTaskDeleted: (Throwable?) -> Unit) {
