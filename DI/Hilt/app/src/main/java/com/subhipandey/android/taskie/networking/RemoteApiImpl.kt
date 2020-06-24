@@ -10,12 +10,14 @@ import com.subhipandey.android.taskie.model.response.RegisterResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
 /**
  * Holds decoupled logic for all the API calls.
  */
 
-class RemoteApiImpl(private val apiService: RemoteApiService) : RemoteApi {
+class RemoteApiImpl @Inject constructor(
+        private val apiService: RemoteApiService) : RemoteApi {
 
   override fun loginUser(userDataRequest: UserDataRequest, onUserLoggedIn: (Result<String>) -> Unit) {
     apiService.loginUser(userDataRequest).enqueue(object : Callback<LoginResponse> {

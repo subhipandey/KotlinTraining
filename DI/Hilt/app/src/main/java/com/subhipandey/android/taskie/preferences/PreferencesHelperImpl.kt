@@ -1,10 +1,12 @@
 package com.subhipandey.android.taskie.preferences
 
 import android.content.SharedPreferences
+import javax.inject.Inject
 
 const val KEY_TOKEN = "token"
 
-class PreferencesHelperImpl(private val preference: SharedPreferences) : PreferencesHelper {
+class PreferencesHelperImpl @Inject constructor(
+        private val preference: SharedPreferences) : PreferencesHelper {
 
   override fun saveToken(token: String) {
     preference.edit()
