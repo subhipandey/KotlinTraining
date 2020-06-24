@@ -7,12 +7,15 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.subhipandey.android.taskie.R
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 /**
  * Main Screen, represents different fragments for each section of the app.
  */
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
   private val pagerAdapter by lazy { MainPagerAdapter(supportFragmentManager) }

@@ -18,19 +18,27 @@ import com.subhipandey.android.taskie.model.Success
 import com.subhipandey.android.taskie.model.Task
 import com.subhipandey.android.taskie.model.request.AddTaskRequest
 import com.subhipandey.android.taskie.networking.NetworkStatusChecker
+import com.subhipandey.android.taskie.networking.RemoteApi
 import com.subhipandey.android.taskie.utils.toast
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_dialog_new_task.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Dialog fragment to create a new task.
  */
+
+@AndroidEntryPoint
 class AddTaskDialogFragment : DialogFragment() {
 
+  @Inject
+  lateinit var remoteApi: RemoteApi
+
   private var taskAddedListener: TaskAddedListener? = null
-  private val remoteApi = App.remoteApi
+
   private val networkStatusChecker by lazy {
     NetworkStatusChecker(activity?.getSystemService(ConnectivityManager::class.java))
   }

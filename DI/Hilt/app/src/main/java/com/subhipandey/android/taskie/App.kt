@@ -12,22 +12,4 @@ import dagger.hilt.android.HiltAndroidApp
 
 
 @HiltAndroidApp
-class App : Application() {
-
-  companion object {
-    private lateinit var instance: App
-
-    val preferences by lazy {
-      PreferencesHelperImpl(instance.getSharedPreferences(KEY_PREFERENCES, Context.MODE_PRIVATE))
-    }
-
-    val remoteApi by lazy {
-      buildRemoteApi()
-    }
-  }
-
-  override fun onCreate() {
-    super.onCreate()
-    instance = this
-  }
-}
+class App : Application()
