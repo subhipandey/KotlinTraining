@@ -3,6 +3,7 @@ package com.subhipandey.android.animaldoppelganger
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * Main Screen
@@ -22,8 +23,14 @@ class MainActivity : AppCompatActivity() {
 
     doppelgangerNamesArray = resources.getStringArray(R.array.doppelganger_names)
 
+    val doppelAdapter = DoppelAdapter(this, doppelgangerNamesArray.size)
+    doppelgangerViewPager.adapter = doppelAdapter
 
-  override fun onDestroy() {
-    super.onDestroy()
   }
+
+    override fun onDestroy() {
+      super.onDestroy()
+    }
+
+
 }
