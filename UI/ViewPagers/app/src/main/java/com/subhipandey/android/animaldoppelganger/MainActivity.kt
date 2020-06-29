@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 
 /**
  * Main Screen
@@ -33,10 +34,14 @@ class MainActivity : AppCompatActivity() {
 
         val doppelAdapter = DoppelAdapter(this, doppelgangerNamesArray.size)
         doppelgangerViewPager.adapter = doppelAdapter
-      
+
 
         doppelgangerViewPager.registerOnPageChangeCallback(doppelgangerPageChangeCallback)
 
+        TabLayoutMediator(tabLayout, doppelgangerViewPager){tab, position ->
+            tab.text = doppelgangerNamesArray[position].split("")[0]
+
+        }.attach()
     }
 
     override fun onDestroy() {
