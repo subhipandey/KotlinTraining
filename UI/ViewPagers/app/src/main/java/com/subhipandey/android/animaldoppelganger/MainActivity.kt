@@ -6,6 +6,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
+import android.view.View
 
 /**
  * Main Screen
@@ -42,6 +43,8 @@ class MainActivity : AppCompatActivity() {
             tab.text = doppelgangerNamesArray[position].split("")[0]
 
         }.attach()
+        doppelgangerViewPager.layoutDirection = ViewPager2.LAYOUT_DIRECTION_RTL
+        tabLayout.layoutDirection = View.LAYOUT_DIRECTION_RTL
     }
 
     override fun onDestroy() {
